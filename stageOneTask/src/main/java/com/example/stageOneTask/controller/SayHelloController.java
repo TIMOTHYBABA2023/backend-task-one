@@ -18,7 +18,7 @@ public class SayHelloController {
  private final HelloService helloService;
 
     @GetMapping("/api/hello")
-    public ResponseEntity<GenericResponse> sayHello(@RequestParam(name = "visitor_name") String visitorName) throws IOException {
+    public ResponseEntity<GenericResponse> sayHello(@RequestParam(name = "visitorName") String visitorName) throws IOException {
         GenericResponse response = helloService.getGreeting(visitorName);
         return ResponseEntity.ok(response);
     }
