@@ -8,7 +8,7 @@
 
 # Stage 2: Run the application
 FROM openjdk:17-jdk-slim
-WORKDIR /app
-COPY --from=build /app/target/stageOneTask.jar stageOneTask.jar
+#WORKDIR /app
+COPY --from=build /target/stageOneTask.jar stageOneTask.jar
 EXPOSE 8080
 CMD ["java", "-jar","stageOneTask.jar"]
