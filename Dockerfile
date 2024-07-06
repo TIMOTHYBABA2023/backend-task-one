@@ -1,10 +1,13 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17
-# Copy the executable JAR into the container
-#ADD target/stageOneTask-0.0.1-SNAPSHOT.jar app1.jar
-ADD stageOneTask/target/stageOneTask-0.0.1-SNAPSHOT.jar app1.jar
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
+# Stage 1: Build the application
+FROM maven:3.8.4-openjdk-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean install
 
-# Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "app1.jar"]
+# Stage 2: Run the application
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/stageOneTask-0.0.1-SNAPSHOT.jar ./ass.jar
+EXPOSE 8080
+CMD ["java", "-jar","ass.jar"]
