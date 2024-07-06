@@ -11,4 +11,4 @@ FROM openjdk:17-alpine
 WORKDIR /app
 COPY --from=build /app/target/stageOneTask.jar stageOneTask.jar
 EXPOSE 8080
-CMD ["java", "-jar","ass.jar"]
+CMD ["java", "-jar","stageOneTask.jar"]
