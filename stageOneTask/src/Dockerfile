@@ -2,7 +2,7 @@
 FROM maven:3.8.4-openjdk-17 AS build
 COPY src /app/src
 WORKDIR /app
-COPY pom.xml /app
+COPY ../pom.xml /app
 RUN mvn clean install -DskipTests
 RUN mvn -lh /app/target
 
